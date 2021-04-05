@@ -46,6 +46,12 @@ export default function Home({ values, dates, names }) {
       <Head>
         <title>London Migratory Patterns</title>
         <link rel="icon" href="/favicon.ico" />
+        <script
+          async
+          defer
+          data-domain="migratory.jthaw.club"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
       </Head>
 
       <main className={styles.main}>
