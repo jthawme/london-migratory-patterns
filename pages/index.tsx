@@ -44,7 +44,7 @@ export default function Home({ values, dates, names }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>London Migratory Patterns</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
