@@ -16,13 +16,15 @@ export default function Home({ values, dates, names }) {
       currentIndex
     ].minute
       .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")} – ${dates[currentIndex].date}/${
+      dates[currentIndex].month + 1
+    }`;
   }, [dates, currentIndex]);
 
   useEffect(() => {
     let int = setInterval(() => {
       setCurrentIndex((s) => (s + 1) % values[0].values.length);
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(int);
@@ -55,6 +57,13 @@ export default function Home({ values, dates, names }) {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.key}>
+          <div className={styles.track} />
+          <div className={styles.label}>
+            <span>Empty dock</span>
+            <span>Full dock</span>
+          </div>
+        </div>
         <div className={styles.display}>{time}</div>
         <div className={styles.target}>{currentTarget}</div>
         <div className={styles.figure}>
@@ -69,8 +78,8 @@ export default function Home({ values, dates, names }) {
                 className={styles.base}
                 style={
                   {
-                    "--x-pos": v.x,
-                    "--y-pos": 1 - v.y,
+                    "--x-pos": Math.round(v.x * 100) / 100,
+                    "--y-pos": Math.round((1 - v.y) * 50) / 50,
                     "--z": Math.round(v.y * 1000),
                   } as React.CSSProperties
                 }
@@ -80,6 +89,7 @@ export default function Home({ values, dates, names }) {
                   style={
                     {
                       "--height": v.values[currentIndex],
+                      "--hue": 240 - v.values[currentIndex] * 240,
                       // "--top-color": `rgb(${color.r}, ${color.g}, ${color.b})`,
                     } as React.CSSProperties
                   }

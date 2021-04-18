@@ -8,6 +8,8 @@ const files = fs.readdirSync(DATA_FOLDER("")).filter((f) => !f.startsWith("."));
 const data = files.map((file) => {
   return jsonfile.readFileSync(DATA_FOLDER(file));
 });
+
+console.log(data.length);
 const MIN_LAT = Math.min(...data[0].map((item) => item.location.lat));
 const MIN_LON = Math.min(...data[0].map((item) => item.location.lon));
 const MAX_LAT = Math.max(...data[0].map((item) => item.location.lat));
@@ -55,8 +57,8 @@ const minData = Object.values(
     }, {})
 ).map((item) => ({
   ...item,
-  values: item.values.slice(0, 24 * 4),
-  globalValues: item.globalValues.slice(0, 24 * 4),
+  values: item.values,
+  globalValues: item.globalValues,
 }));
 
 const dates = files
