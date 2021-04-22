@@ -75,6 +75,7 @@ export default function Home({ values, dates, names }) {
 
             return (
               <span
+                key={v.id}
                 className={styles.base}
                 style={
                   {
